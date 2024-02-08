@@ -15,6 +15,7 @@ module.exports = {
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        unique: true,
       },
       updatedAt: {
         allowNull: false,
