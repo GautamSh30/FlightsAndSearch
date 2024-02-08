@@ -1,2 +1,7 @@
 node_modules/
+<<<<<<< HEAD
 .env
+src/config/config.json
+=======
+.env
+>>>>>>> parent of 39dddbb (Added details to readme)
