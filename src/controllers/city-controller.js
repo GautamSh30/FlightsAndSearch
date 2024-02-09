@@ -1,10 +1,10 @@
 const { CityService } = require("../services/index");
 
-const CityService = new CityService();
+const cityService = new CityService(); // Changed variable name to avoid conflict
 
 const create = async (req, res) => {
   try {
-    const city = await CityService.createCity(req.body);
+    const city = await cityService.createCity(req.body); // Updated to use cityService
     return res.status(201).json({
       data: city,
       success: true,
@@ -12,7 +12,7 @@ const create = async (req, res) => {
       err: {},
     });
   } catch (err) {
-    console.log(err);
+    console.error(err); // Changed to console.error for consistency
     return res.status(500).json({
       data: {},
       success: false,
@@ -24,15 +24,15 @@ const create = async (req, res) => {
 
 const destroy = async (req, res) => {
   try {
-    const response = await CityService.deleteCity(req.params.id);
+    const city = await cityService.deleteCity(req.params.id); // Updated to use cityService
     return res.status(200).json({
-      data: city,
+      data: city, // Updated variable name to be consistent
       success: true,
       message: "Successfully deleted a city",
       err: {},
     });
   } catch (err) {
-    console.log(err);
+    console.error(err); // Changed to console.error for consistency
     return res.status(500).json({
       data: {},
       success: false,
@@ -44,15 +44,16 @@ const destroy = async (req, res) => {
 
 const get = async (req, res) => {
   try {
-    const city = await CityService.getCity(req.params.id);
-    return res.status(201).json({
+    const city = await cityService.getCity(req.params.id); // Updated to use cityService
+    return res.status(200).json({
+      // Changed status code to 200
       data: city,
       success: true,
       message: "Successfully fetched a city",
       err: {},
     });
   } catch (err) {
-    console.log(err);
+    console.error(err); // Changed to console.error for consistency
     return res.status(500).json({
       data: {},
       success: false,
@@ -64,15 +65,16 @@ const get = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    const city = await CityService.updateCity(req.params.id, req.body);
-    return res.status(201).json({
+    const city = await cityService.updateCity(req.params.id, req.body); // Updated to use cityService
+    return res.status(200).json({
+      // Changed status code to 200
       data: city,
       success: true,
       message: "Successfully updated the city",
       err: {},
     });
   } catch (err) {
-    console.log(err);
+    console.error(err); // Changed to console.error for consistency
     return res.status(500).json({
       data: {},
       success: false,
