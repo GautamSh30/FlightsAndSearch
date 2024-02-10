@@ -44,16 +44,15 @@ const destroy = async (req, res) => {
 
 const get = async (req, res) => {
   try {
-    const city = await cityService.getCity(req.params.id); // Updated to use cityService
+    const city = await cityService.getCity(req.params.id);
     return res.status(200).json({
-      // Changed status code to 200
       data: city,
       success: true,
       message: "Successfully fetched a city",
       err: {},
     });
   } catch (err) {
-    console.error(err); // Changed to console.error for consistency
+    console.error(err);
     return res.status(500).json({
       data: {},
       success: false,
@@ -65,20 +64,41 @@ const get = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    const city = await cityService.updateCity(req.params.id, req.body); // Updated to use cityService
+    const response = await cityService.updateCity(req.params.id, req.body); // Updated to use cityService
     return res.status(200).json({
       // Changed status code to 200
-      data: city,
+      data: response,
       success: true,
       message: "Successfully updated the city",
       err: {},
     });
   } catch (err) {
-    console.error(err); // Changed to console.error for consistency
+    console.error(err);
     return res.status(500).json({
       data: {},
       success: false,
       message: "Not able to update the city",
+      err: err,
+    });
+  }
+};
+
+const getAll = async (req, res) => {
+  try {
+    const cities = await cityService.getAllcities();
+    return res.status(200).json({
+      // Changed status code to 200
+      data: cities,
+      success: true,
+      message: "Successfully fetched all cities",
+      err: {},
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "Not able to get all the cities",
       err: err,
     });
   }
@@ -89,4 +109,5 @@ module.exports = {
   destroy,
   get,
   update,
+  getAll,
 };

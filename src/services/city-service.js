@@ -11,7 +11,7 @@ class CityService {
       return city;
     } catch (err) {
       console.log("Something went wrong at service layer");
-      throw err;
+      throw { err };
     }
   }
 
@@ -21,7 +21,7 @@ class CityService {
       return response;
     } catch (err) {
       console.log("Something went wrong at service layer");
-      throw err;
+      throw { err };
     }
   }
 
@@ -31,7 +31,7 @@ class CityService {
       return city;
     } catch (err) {
       console.log("Something went wrong at service layer");
-      throw err;
+      throw { err };
     }
   }
 
@@ -41,7 +41,17 @@ class CityService {
       return city;
     } catch (err) {
       console.log("Something went wrong at service layer");
-      throw err;
+      throw { err };
+    }
+  }
+
+  async getAllcities() {
+    try {
+      const cities = await this.cityRepository.getAllCities();
+      return cities;
+    } catch (err) {
+      console.log("Something went wrong at service layer");
+      throw { err };
     }
   }
 }

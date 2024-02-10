@@ -13,7 +13,7 @@ const setupAndStartServer = async () => {
 
   app.use("/api", ApiRoutes);
 
-  app.listen(PORT, () => {
+  app.listen(PORT, async () => {
     console.log(`Server running on port ${PORT}`);
     const repo = new CityRepository();
     repo.createCity({ name: "New Delhi" });
